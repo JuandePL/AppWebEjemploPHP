@@ -13,6 +13,16 @@
     <main class="form-signin w-100 m-auto">
 
         <?php
+        include('php/DB.php');
+        $currentFile = $_SERVER['SCRIPT_NAME'];
+
+        // Login Handler
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // 1 ES TRUE
+            header("Location:$currentFile?login=1");
+        }
+
+        // Session handler
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             if (isset($_GET['login'])) {
                 $isLogin = boolval($_GET['login']);
@@ -20,20 +30,21 @@
                 if ($isLogin) {
         ?>
                     <div class="alert alert-success" role="alert">
-                        INICIO DE SESION COERRECTO A CHUPARLA EA PA LA VENTA DER NABO SHUPALAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA SIUUUUUUUUUUUUUUUU
+                        Inicio de sesión correcto
                     </div>
                 <?php
                 } else {
                 ?>
                     <div class="alert alert-danger" role="alert">
-                        HAHAHAHSAHSHJAHSJAHSJASAHSJAHS QUE TONTO ERES IJO
+                        Error al iniciar sesión. <br> Las credenciales son incorrectas.
                     </div>
         <?php
                 }
             }
         }
         ?>
-        <form action="loginHandler.php" method="post">
+        <form action=<?php echo $currentFile ?> method="post">
+            <img class="mb-4" src="https://i.pinimg.com/originals/3b/a6/c6/3ba6c62072b44f68baaca0faff4d2782.png" alt="BETI" height="75">
             <h1 class="h3 mb-3 fw-normal">Por favor, inicia sesión</h1>
 
             <div class="form-floating">
@@ -47,10 +58,11 @@
 
             <div class="checkbox mb-3">
                 <label>
-                    <input type="checkbox" value="rememberMe"> Recordarme
+                    <input type="checkbox" class="check-betis" value="rememberMe"> Recordarme
+                    <label for=""></label>
                 </label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+            <button class="w-100 btn btn-lg btn-success btn-betis" type="submit">Iniciar sesión</button>
         </form>
     </main>
 </body>
