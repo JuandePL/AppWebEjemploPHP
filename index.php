@@ -15,10 +15,11 @@
         <?php
         // Correct session handler
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            // Si existe, recoge su valor. Sino existe es false.
             $isLogin = isset($_GET['login']) ? boolval($_GET['login']) : false;
 
-            if ($isLogin) {
-        ?>
+            // Comprobar si el inicio de sesion ha sido correcto
+            if ($isLogin) { ?>
                 <div class="alert alert-success" role="alert">
                     Inicio de sesión correcto
                 </div>

@@ -44,8 +44,17 @@ class DB {
      * y devuelve el primer usuario que encuentra en la DB
      */
     static function fetchUser($query, $values) {
-        return self::prepare($query, $values)[0];
+        $user = self::prepare($query, $values)[0];
+
+        return $user ? $user : false;
+    }
+
+    static function fetchUserByUsername($username) {
+        $user = self::fetchUser(
+            "SELECT * FROM usuarios WHERE username=?",
+            array($username)
+        )[0];
+
+        return $user ? $user : false;
     }
 }
-
-DB::connect();
